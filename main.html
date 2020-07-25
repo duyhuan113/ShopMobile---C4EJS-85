@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <head>
         <a href="cart.html">
             <div id="cart-show">
-                <p>Cart</p>
+                <h3>Cart</h3>
                 <span id="cartNumbers">0</span>
             </div>
         </a>
     </head>
     <!-- đoạn này hiển thị danh sánh sản phẩm -->
-    <div class="container-box" style="width: 75%;height: 600px;background-color: cornflowerblue;">
+    <div class="container-box">
         <div class="box-title">
             <a>
                 <h2>Product List </h2>
             </a>
         </div>
-        <div class="content">
+        <div class="mainContent">
             <ul id="listProduct" class="list-box">
                 <!--đoạn này là chèn từ file js sang, comment cho mn hiểu
                 <li style="background-color: darkgrey; height: 150px;width: 150px;" >
@@ -44,7 +41,49 @@
                 </li> -->
             </ul>
         </div>
-    </div>
+        <!-- đoạn này bị ẩn đi cho đến khi client ấn vào view detail -->
+        <div id="detailProduct" style="display: none;">
+            <!--  <div class="detail-img">
+                <div class="">
+                    <div class="item active">
+                        <a href="#"> <img src="" alt="" style="width:100%"></a>
+                    </div>
+                    <div class="item">
+                        <a href="#"> <img src="" alt="" style="width:100%"></a>
+                    </div>
+                    <div class="item">
+                        <a href="#"> <img src="" alt="" style="width:100%"></a>
+                    </div>
+                </div>
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            </div>
+            <div class="detail-infor">
+                <h3>Name of the Item </h3>
+                <form>
+                    <label><span>$140.00</span></label>
+                    <div>
+                        <label><span>Color</span></label>
+                        <div class="controls">
+                            <select class="span11">
+                                <option>Red</option>
+                                <option>Purple</option>
+                                <option>Pink</option>
+                                <option>Red</option>
+                            </select>
+                        </div>
+                    </div>
+                    <h4>100 items in stock</h4>
+                    <p>Nowadays the lingerie industry is one of the most successful business spheres.
+                        Nowadays the lingerie industry is one of ...
+                    <p>
+                        <button class="btnAddCart" type="submit"><span class=" icon-shopping-cart"></span> Add to
+                            cart</button>
+                        <button class="btnClose" onclick="hideDivDetail()">Close</button>
+                </form>
+            </div> -->
+        </div>
 </body>
 <script src="main.js"></script>
+
 </html>

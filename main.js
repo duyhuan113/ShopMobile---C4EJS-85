@@ -124,21 +124,39 @@ function loadListProduct() {
         </div>
         <div class="info-box">
         <a href="Main.html" ></a>
-        <button class="btnAddCart" onclick="">Add to Cart</button>
-        <button class="btnBuy">Buy</button>
+        <button class="btnAddCart" >Add to Cart</button>
+        <button class="btnDetail" onclick="showDivDetail()">Detail</button>
         </div>
     </li>` )
     };
-    const btnBuy = document.getElementsByClassName('btnBuy');
+    const btnDetail = document.getElementsByClassName('btnDetail');
     const btnAddCart = document.getElementsByClassName('btnAddCart');
-
     for (let i = 0; i < btnAddCart.length; i++) {
         btnAddCart[i].addEventListener('click', () => {
             cartNumber(productData[i]);
             cartTotal(productData[i]);
         })
     }
+
+
+    for (let i = 0; i < btnDetail.length; i++) {
+        btnDetail[i].addEventListener('click', () => {
+            // cartNumber(productData[i]);
+            // cartTotal(productData[i]);
+            showDetailProduct(productData[i]);
+        })
+    }
 };
+const detailProduct = document.getElementById('detailProduct');
+
+function showDivDetail() {
+    detailProduct.style.display = 'block';
+}
+
+function hideDivDetail() {
+    detailProduct.style.display = 'none';
+}
+
 //function này hiển thị số product đã đc chọn có sẵn trong localstr, reload trang nhưg số sản phẩm trong cart k bị mất
 function loadNumberInCart() {
     let productNumberInCarts = localStorage.getItem('CartNumbers');
@@ -149,7 +167,6 @@ function loadNumberInCart() {
 }
 //function thêm vào giỏ hàng
 function cartNumber(chosenProduct) {
-
     let productNumberInCarts = localStorage.getItem('CartNumbers'); //lấy ra số product đag có trong cart
     productNumberInCarts = parseInt(productNumberInCarts);
     //đoạn này kiểm tra xem trong cart có product nào chưa
@@ -164,23 +181,25 @@ function cartNumber(chosenProduct) {
 };
 //function này lưu lại những product đã đc chọn.
 function inCartProduct(chosenProduct) {
-    let cartItems = localStorage.getItem('productInCart');
-    cartItems = JSON.parse(cartItems);
-    if (cartItems != null) {
-        if (cartItems[chosenProduct.productID] == undefined) {
-            cartItems = {
-                ...cartItems,
+    let productInCart = localStorage.getItem('productInCart');
+    productInCart = JSON.parse(productInCart);
+    
+    if (productInCart != null) {
+        if (productInCart[chosenProduct.productID] == undefined) {
+            productInCart = {
+                ...productInCart,
                 [chosenProduct.productID]: chosenProduct,
             }
         }
-        cartItems[chosenProduct.productID].inCart += 1;
+        productInCart[chosenProduct.productID].inCart += 1;
     } else {
         chosenProduct.inCart = 1;
-        cartItems = {
+        productInCart = {
             [chosenProduct.productID]: chosenProduct,
         }
     }
-    localStorage.setItem('productInCart', JSON.stringify(cartItems));
+    
+    localStorage.setItem('productInCart', JSON.stringify(productInCart));
 };
 //fuction này tính tổng giá trị sản phẩm đc chọn
 function cartTotal(chosenProduct) {
@@ -192,6 +211,59 @@ function cartTotal(chosenProduct) {
         localStorage.setItem('totalCart', chosenProduct.price);
     }
 }
+
+function showDetailProduct(chosenProduct) {
+    console.log(chosenProduct.productName);
+    const detailProduct = document.getElementById('detailProduct');
+    detailProduct.insertAdjacentHTML('beforeend', `
+    <div class="detail-img">
+    <div class="">
+        <div class="item active">
+            <a href="#"> <img src="" alt="" style="width:100%"></a>
+        </div>
+        <div class="item">
+            <a href="#"> <img src="" alt="" style="width:100%"></a>
+        </div>
+        <div class="item">
+            <a href="#"> <img src="" alt="" style="width:100%"></a>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+</div>
+<div class="detail-infor">
+    <h3>${chosenProduct.productName}</h3>
+    <form>
+        <label><span>${chosenProduct.price}$</span></label>
+        <div>
+            <label><span>Color</span></label>
+            <div class="controls">
+                <select class="span11">
+                    <option>Red</option>
+                    <option>Purple</option>
+                    <option>Pink</option>
+                    <option>Red</option>
+                </select>
+            </div>
+        </div>
+        <h4>${chosenProduct.quantity} items in stock</h4>
+        <p>Nowadays the lingerie industry is one of the most successful business spheres.
+            Nowadays the lingerie industry is one of ...
+        <p>
+            <button class="btnAddCart" <span class=" icon-shopping-cart"></span> Add to
+                cart</button>
+            <button class="btnClose" onclick="hideDivDetail()">Close</button>
+    </form>
+</div>
+    `)
+    const btnAddCart = document.getElementsByClassName('btnAddCart');
+    for (let i = 0; i < btnAddCart.length; i++) {
+        btnAddCart[i].addEventListener('click', () => {
+            cartNumber(chosenProduct);
+            cartTotal(chosenProduct);
+        })
+    }
+};
 loadListProduct();
 loadNumberInCart();
 

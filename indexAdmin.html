@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/d22d9dd2e6.js" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <title>Mobile Web</title>
+</head>
+<body>
+    <div class="main_container">
+        <button id="btn_login">Log in</button>
+        <button id="btn_logout">Log out</button>
+        
+
+        <div id="login_form">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="userName" placeholder="Enter username">
+            </div>
+            <div>
+                <label for="pwd">Password:</label>
+                <input type="password" id="pwd" placeholder="Enter password">
+            </div>
+            <button type="submit" id="btnSubmit">Submit</button>
+            <button id="btn_register">Register</button>
+            <button id="btnCancel">Cancel</button>
+            
+        </div>
+        <div id="register_form">
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="uName" placeholder="Enter username">
+            </div>
+            <div>
+                <label for="pwd">Password:</label>
+                <input type="password" id="password" placeholder="Enter password">
+            </div>
+            <div>
+                <label for="pwd">Confirm Password:</label>
+                <input type="password" id="confirmPassword" placeholder="Enter password">
+            </div>
+            <button type="submit" id="btnRegister">Register</button>
+        </div>
+
+        
+        <div id="admin_form">
+            <h2>Add New Product</h2><br>
+            <div class="add_product">
+            <div class="input">
+                <i class="fas fa-qrcode"></i>
+                <input type="text" placeholder="Enter Product ID" id="newID">
+            </div>
+            <div class="input">
+                <i class="fas fa-tags"></i>
+                <input type="text" placeholder="Enter Product Name" id="newName">
+            </div>
+            <div class="input">
+                <i class="fas fa-tablet-alt"></i>
+                <input type="text" placeholder="Enter Product Brand" id="newBrand">
+            </div>
+            <div class="input">
+                <i class="fas fa-dollar-sign"></i>
+                <input type="text" placeholder="Enter Price" id="newPrice">
+            </div>
+            <div class="input">
+                <i class="fas fa-sort-numeric-up-alt"></i>
+                <input type="text" placeholder="Enter Quantity" id="newQuantity">
+            </div>
+            <div class="input">
+                <i class="fas fa-file-alt"></i>
+                <input type="text" placeholder="Enter Description" id="newDescription">
+            </div>
+            <div class="input">
+                <i class="fas fa-people-arrows"></i>
+                <input type="text" placeholder="Enter Provider" id="newProvider">
+            </div>
+            
+            <button class="btn btn-outline-success" id="add_btn">Add New Product</button>
+            <button class="btn btn-outline-danger" id="clear_btn">Clear Info</button>
+            </div><br>
+            <h2>List of product</h2><br>
+            <table id="table" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
+                        <th>Product Brand</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Description</th>
+                        <th>Provider</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="ts_tbody">
+                    <!-- js Code -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="cart_form">
+            <a href="cart.html">
+                <div id="cart-show">
+                    <h3>Cart</h3>
+                    <span id="cartNumbers">0</span>
+                </div>
+            </a>
+        </div>
+
+        <div id="user_form">
+            <h2>Product List </h2>
+            <div class="content">
+                <ul id="listProduct">
+                    <!-- js Code -->
+                </ul>
+            </div>
+        </div>
+
+        <div id="detail_form">
+            <div id="productDetail"></div>
+        </div>
+    </div>
+</body>
+<script src="indexAdmin.js"></script>
+
+</html>

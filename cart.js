@@ -157,6 +157,5 @@ function showBillDetail() {
         alert('Buy  Fail.')
     };
 };
-
 loadListCartProduct();
 loadNumberInCart();

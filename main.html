@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <head>
+
+    <head >
+        <div id="loginFunction">
+            <button id="btnLogin">Log in</button>
+            <button id="btn_logout">Log out</button>
+        </div>
         <a href="cart.html">
             <div id="cart-show">
                 <h3>Cart</h3>
@@ -15,8 +22,96 @@
             </div>
         </a>
     </head>
+
+    <!-- ĐÂY LÀ LOGIN FORM, MẶC ĐỊNH BỊ ẨN, CHỈ HIỆN KHI AÁN LOGIN -->
+    <div id="login_form">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="userName" placeholder="Enter username">
+        </div>
+        <div>
+            <label for="pwd">Password:</label>
+            <input type="password" id="pwd" placeholder="Enter password">
+        </div>
+        <button type="submit" id="btnSubmit">Submit</button>
+        <button id="btn_register">Register</button>
+        <button id="btnCancel">Cancel</button>
+    </div>
+
+    <div id="register_form">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="uName" placeholder="Enter username">
+        </div>
+        <div>
+            <label for="pwd">Password:</label>
+            <input type="password" id="password" placeholder="Enter password">
+        </div>
+        <div>
+            <label for="pwd">Confirm Password:</label>
+            <input type="password" id="confirmPassword" placeholder="Enter password">
+        </div>
+        <button type="submit" id="btnRegister">Register</button>
+    </div>
+
+    <div id="admin_form">
+        <h2>Add New Product</h2><br>
+        <div class="add_product">
+        <div class="input">
+            <i class="fas fa-qrcode"></i>
+            <input type="text" placeholder="Enter Product ID" id="newID">
+        </div>
+        <div class="input">
+            <i class="fas fa-tags"></i>
+            <input type="text" placeholder="Enter Product Name" id="newName">
+        </div>
+        <div class="input">
+            <i class="fas fa-tablet-alt"></i>
+            <input type="text" placeholder="Enter Product Brand" id="newBrand">
+        </div>
+        <div class="input">
+            <i class="fas fa-dollar-sign"></i>
+            <input type="text" placeholder="Enter Price" id="newPrice">
+        </div>
+        <div class="input">
+            <i class="fas fa-sort-numeric-up-alt"></i>
+            <input type="text" placeholder="Enter Quantity" id="newQuantity">
+        </div>
+        <div class="input">
+            <i class="fas fa-file-alt"></i>
+            <input type="text" placeholder="Enter Description" id="newDescription">
+        </div>
+        <div class="input">
+            <i class="fas fa-people-arrows"></i>
+            <input type="text" placeholder="Enter Provider" id="newProvider">
+        </div>
+        
+        <button class="btn btn-outline-success" id="add_btn">Add New Product</button>
+        <button class="btn btn-outline-danger" id="clear_btn">Clear Info</button>
+        </div><br>
+        <h2>List of product</h2><br>
+        <table id="table" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Product Brand</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Provider</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="ts_tbody">
+                <!-- js Code -->
+            </tbody>
+        </table>
+    </div>
+
+
     <!-- đoạn này hiển thị danh sánh sản phẩm -->
-    <div class="container-box">
+    <div id="containerBox" style="background-color: salmon;">
         <div class="box-title">
             <a>
                 <h2>Product List </h2>
@@ -42,47 +137,50 @@
             </ul>
         </div>
         <!-- đoạn này bị ẩn đi cho đến khi client ấn vào view detail -->
-        <div id="detailProduct" style="display: none;">
-            <!--  <div class="detail-img">
-                <div class="">
-                    <div class="item active">
-                        <a href="#"> <img src="" alt="" style="width:100%"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"> <img src="" alt="" style="width:100%"></a>
-                    </div>
-                    <div class="item">
-                        <a href="#"> <img src="" alt="" style="width:100%"></a>
+    </div>
+    <!-- div này dùng để hiển thị chi tiết sản phẩm -->
+    <div id="detailProduct" style="display: none;">
+        <!--  <div class="detail-img">
+            <div class="">
+                <div class="item active">
+                    <a href="#"> <img src="" alt="" style="width:100%"></a>
+                </div>
+                <div class="item">
+                    <a href="#"> <img src="" alt="" style="width:100%"></a>
+                </div>
+                <div class="item">
+                    <a href="#"> <img src="" alt="" style="width:100%"></a>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+        </div>
+        <div class="detail-infor">
+            <h3>Name of the Item </h3>
+            <form>
+                <label><span>$140.00</span></label>
+                <div>
+                    <label><span>Color</span></label>
+                    <div class="controls">
+                        <select class="span11">
+                            <option>Red</option>
+                            <option>Purple</option>
+                            <option>Pink</option>
+                            <option>Red</option>
+                        </select>
                     </div>
                 </div>
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-            </div>
-            <div class="detail-infor">
-                <h3>Name of the Item </h3>
-                <form>
-                    <label><span>$140.00</span></label>
-                    <div>
-                        <label><span>Color</span></label>
-                        <div class="controls">
-                            <select class="span11">
-                                <option>Red</option>
-                                <option>Purple</option>
-                                <option>Pink</option>
-                                <option>Red</option>
-                            </select>
-                        </div>
-                    </div>
-                    <h4>100 items in stock</h4>
-                    <p>Nowadays the lingerie industry is one of the most successful business spheres.
-                        Nowadays the lingerie industry is one of ...
-                    <p>
-                        <button class="btnAddCart" type="submit"><span class=" icon-shopping-cart"></span> Add to
-                            cart</button>
-                        <button class="btnClose" onclick="hideDivDetail()">Close</button>
-                </form>
-            </div> -->
-        </div>
+                <h4>100 items in stock</h4>
+                <p>Nowadays the lingerie industry is one of the most successful business spheres.
+                    Nowadays the lingerie industry is one of ...
+                <p>
+                    <button class="btnAddCart" type="submit"><span class=" icon-shopping-cart"></span> Add to
+                        cart</button>
+                    <button class="btnClose" onclick="hideDivDetail()">Close</button>
+            </form>
+        </div> -->
+    </div>
+
 </body>
 <script src="main.js"></script>
 

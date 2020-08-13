@@ -22,9 +22,23 @@
             </div>
         </a>
     </head>
+    <div class="top-nav__search">
+        <div class="container-input">
+          <input id="search" placeholder="Search..">
+          <ul class="result-search">
 
+          </ul>
+        </div>
+        <button type="submit" >Search</button>
+      </div>
+   <!-- <div style="background-color:darkkhaki;">
+       <input type="text" id="myInput" onkeyup="" placeholder="Search for names..">
+       <button id="btnSearch">Search</button>
+   </div> -->
+        
+   
     <!-- ĐÂY LÀ LOGIN FORM, MẶC ĐỊNH BỊ ẨN, CHỈ HIỆN KHI AÁN LOGIN -->
-    <div id="login_form">
+    <!-- <div id="login_form">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="userName" placeholder="Enter username">
@@ -104,10 +118,10 @@
                 </tr>
             </thead>
             <tbody id="ts_tbody">
-                <!-- js Code -->
+                
             </tbody>
         </table>
-    </div>
+    </div> -->
 
 
     <!-- đoạn này hiển thị danh sánh sản phẩm -->
@@ -140,7 +154,7 @@
     </div>
     <!-- div này dùng để hiển thị chi tiết sản phẩm -->
     <div id="detailProduct" style="display: none;">
-        <!--  <div class="detail-img">
+         <!-- <div class="detail-img">
             <div class="">
                 <div class="item active">
                     <a href="#"> <img src="" alt="" style="width:100%"></a>
@@ -180,7 +194,17 @@
             </form>
         </div> -->
     </div>
-
+    <div id="filterBrand">
+        <ul id="listBrand" >
+            <!-- <li ><a href="">samsung</a></li>
+            <li><a href="">iphone</a></li>
+            <li><a href="">xiaomi</a></li>
+            <li><a href="">oppo</a></li> -->
+        </ul>
+    <div class="content">
+        <ul id="loadproduct">
+    </div>
+    
 </body>
 <script src="main.js"></script>
 

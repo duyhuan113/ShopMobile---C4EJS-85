@@ -1,6 +1,5 @@
 // đây làm array object chứa data product.
-var productData = [
-    {
+var productData = [{
         productID: "P025",
         productName: "Huawei P40 Pro",
         productBrand: "Oppo",
@@ -290,8 +289,7 @@ var productData = [
 
 ];
 //đây là array object cho account.
-var accountData = [
-    {
+var accountData = [{
         accID: "u01",
         userName: "admin",
         password: "123",
@@ -317,7 +315,7 @@ if (productDataString) {
 }
 const listProduct = document.getElementById('listProduct');
 // function này đọc dữ liệu từ array data ra và show ra html (màn hình)
-function loadListProduct() {
+function loadListProduct(listData) {
     for (let i = 0; i < productData.length; i++) {
         listProduct.insertAdjacentHTML('beforeend', `<li>
         <div class="product-show" >
@@ -332,7 +330,7 @@ function loadListProduct() {
         <button class="btnAddCart" >Add to Cart</button>
         <button class="btnDetail" onclick="showDivDetail()">Detail</button>
         </div>
-    </li>` )
+    </li>`)
     };
     const btnDetail = document.getElementsByClassName('btnDetail');
     const btnAddCart = document.getElementsByClassName('btnAddCart');
@@ -340,10 +338,8 @@ function loadListProduct() {
         btnAddCart[i].addEventListener('click', () => {
             cartNumber(productData[i]);
             cartTotal(productData[i]);
-
         })
     }
-
 
     for (let i = 0; i < btnDetail.length; i++) {
         btnDetail[i].addEventListener('click', () => {
@@ -354,12 +350,14 @@ function loadListProduct() {
         })
     }
 };
+loadListProduct(productData);
 const detailProduct = document.getElementById('detailProduct');
 //function này ẩn đi product list
 function hideDivContainerBox() {
     let containerBox = document.getElementById('containerBox');
     containerBox.style.display = 'none';
 }
+
 function showDivDetail() {
     detailProduct.style.display = 'block';
 }
@@ -382,7 +380,7 @@ function cartNumber(chosenProduct) {
     productNumberInCarts = parseInt(productNumberInCarts);
     //đoạn này kiểm tra xem trong cart có product nào chưa
     if (productNumberInCarts) {
-        localStorage.setItem('CartNumbers', productNumberInCarts + 1);// có rồi thì +1
+        localStorage.setItem('CartNumbers', productNumberInCarts + 1); // có rồi thì +1
         document.getElementById('cartNumbers').textContent = productNumberInCarts + 1; //đoạn này hiển thị cart numberr lên màn hình
     } else {
         localStorage.setItem('CartNumbers', 1);
@@ -424,7 +422,6 @@ function cartTotal(chosenProduct) {
 }
 
 function showDetailProduct(chosenProduct) {
-
     console.log(chosenProduct.productName);
     const detailProduct = document.getElementById('detailProduct');
     detailProduct.insertAdjacentHTML('beforeend', `
@@ -475,7 +472,7 @@ function showDetailProduct(chosenProduct) {
         })
     }
 };
-loadListProduct();
+
 loadNumberInCart();
 
 //Login
@@ -494,6 +491,7 @@ btnLogin.addEventListener("click", () => {
     hideAfterLogin();
     hideDivContainerBox();
 });
+
 function hideAfterLogin() {
     loginForm.style.display = "block";
     btnLogin.style.display = "none";
@@ -505,7 +503,7 @@ btnLogout.style.display = "none";
 btnLogin.style.display = "block";
 regiterForm.style.display = "none";
 
-btnSubmit.addEventListener("click", function () {
+btnSubmit.addEventListener("click", function() {
     for (let i = 0; i < accountData.length; i++) {
         if (userName.value == accountData[i].userName && password.value == accountData[i].password) {
             if (accountData[i].role == "admin") {
@@ -639,3 +637,78 @@ clear_btn.addEventListener('click', () => {
     newProvider.value = '';
     update_state = false;
 });
+const filterBrand = document.getElementById('filterBrand');
+const listBrand = document.getElementById('listBrand');
+
+let brand = ['oppo', 'apple', 'samsung', 'xiaomi'];
+
+function filter() {
+    for (let i = 0; i < brand.length; i++) {
+        listBrand.insertAdjacentHTML('beforeend', `
+        <a ><li  class= "itemBrand" style="background-color: darkgrey; height: 150px;width: 150px;" >
+          ${brand[i]}
+        </li></a>`)
+    };
+    let itemBrand = document.getElementsByClassName('itemBrand');
+    for (let i = 0; i < itemBrand.length; i++) {
+        itemBrand[i].addEventListener('click', () => {
+            loadFilterBrand(brand[i])
+        })
+    }
+
+};
+filter();
+const loadproduct = document.getElementById('loadproduct')
+
+function loadFilterBrand(chosenBrand) {
+    console.log(chosenBrand);
+    loadproduct.innerHTML = "";
+    for (let i = 0; i < productData.length; i++) {
+        if (productData[i].productBrand.toLowerCase() == chosenBrand.toLowerCase()) {
+            console.log('ok');
+
+            loadproduct.insertAdjacentHTML('beforeend', `
+                <li style="background-color: darkgrey; height: 150px;width: 150px;" >
+                <div class="product-show" >
+                    <a class="reletive" href="" onclick="">
+                    
+                        <p>${productData[i].productName}</p>
+                        <p>${productData[i].price}</p>
+                </div>
+                <div class="info-box">  
+                <a href="Main.html" ></a>
+                <button class="btnAddCart" onclick="">Add to Cart</button>
+                <button class="btnDetail" onclick="">Detail</button>
+                </div>
+            </li>`)
+            listProduct.style.display = 'none';
+        } else {
+            console.log('fail');
+
+        }
+    }
+};
+
+
+
+
+
+const search = document.getElementById('search');
+const resultSearch = document.querySelector('.result-search');
+
+
+search.addEventListener('input', (e) => {
+    resultSearch.innerHTML = '';
+    let valueInput = e.target.value.toLowerCase();
+    let arraySearchProduct = sortArray(productData, valueInput);
+
+    showResultSearch(arraySearchProduct, valueInput);
+    if (arraySearchProduct.length === 0) {
+        resultSearch.innerHTML += `<li>Không Tìm Thấy Kết Quả</li>`;
+    }
+});
+
+function arraySearchProduct(listSearchData, valueInput) {
+    return listSearchData
+
+}
